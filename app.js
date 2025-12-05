@@ -1,3 +1,8 @@
+// ===================
+// 环境切换开关
+// ===================
+const DEV_MODE = false;   // 🔥 开发中：自动填答会开启
+
 // ========= 配置区域 =========
 
 // 需要【反向计分】的题号：
@@ -139,7 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 初始化显示第一页（分页功能）
     showPage(1);
-    autoFillCustom(myAnswers); // ⬅ 自动用你的答案填好全部题目
+
+    if (DEV_MODE) {
+        autoFillCustom(myAnswers); // ⬅ 自动用你的答案填好全部题目
+    }
 
     btn.addEventListener('click', () => {
         const questionDivs = document.querySelectorAll('.question');
