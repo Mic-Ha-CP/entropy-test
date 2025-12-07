@@ -140,90 +140,108 @@ function prevPage() {
 let radarChart = null;
 
 function drawRadar(closed, balance, highLinear, innerChaos, energyBlur) {
-    const ctx = document.getElementById('entropyRadar').getContext('2d');
+    const canvas = document.getElementById('entropyRadar');
+    if (!canvas) return;
 
-    if (radarChart) radarChart.destroy();
+    const ctx = canvas.getContext('2d');
+
+    if (radarChart) {
+        radarChart.destroy();
+    }
 
     radarChart = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: ["封闭性", "高线性", "能量失焦", "内心失序", "平衡态"],
             datasets: [{
-                label: "我的五向熵维",
+                label: "五维熵值",
                 data: [closed, highLinear, energyBlur, innerChaos, balance],
-                borderWidth: 2,
-                pointRadius: 4
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
             scales: {
-                r: { min: 0, max: 5 }
+                r: {
+                    min: 0,
+                    max: 5,
+                    ticks: {
+                        stepSize: 1,        // 只画 0,1,2,3,4,5
+                    },
+                    grid: {
+                        circular: true
+                    }
+                }
             }
         }
     });
 }
 
+
 function getAnimalType(closedTotal, resistTotal) {
-  const isGrowth = closedTotal <= 40;
-  const isEfficient = resistTotal <= 40;
+    const isGrowth = closedTotal <= 40;
+    const isEfficient = resistTotal <= 40;
 
-  if (isGrowth && isEfficient) {
+    if (isGrowth && isEfficient) {
+        return {
+            key: 'dolphin',
+            name: '海豚型（成长 + 增效）',
+            img: 'img/animals/dolphin.png',
+            summary: '高开放、低内阻，既敢伸展又能高效行动，是典型的「心流型」配置。',
+            points: [
+                '高开放、低内阻：更愿意尝试新的可能，也比较不怕犯错。',
+                '能不断扩大伸展圈：主动探索、愿意尝试新事物。',
+                '目标清晰，认知能量集中在重要事情上。',
+                '能在过程里找到乐趣，遇到挫折也有恢复力。'
+            ]
+        };
+    }
+
+    if (isGrowth && !isEfficient) {
+        return {
+            key: 'sloth',
+            name: '树懒型（成长 + 内耗）',
+            img: 'img/animals/sloth.png',
+            summary: '内心想成长，但行动常常被拖延与情绪内耗拉住。',
+            points: [
+                '高开放、高内阻：想成长，但不容易迈出第一步。',
+                '目标明确，但执行困难，容易犹豫拖延。',
+                '能量涣散，容易被想法与情绪拉走注意力。',
+                '有成长意识，但弹性较弱，压力时容易失衡。'
+            ]
+        };
+    }
+
+    if (!isGrowth && isEfficient) {
+        return {
+            key: 'rhino',
+            name: '犀牛型（固化 + 增效）',
+            img: 'img/animals/rhino.png',
+            summary: '做事高效、能吃苦，但容易停留在舒适圈而缺乏突破。',
+            points: [
+                '低开放、低内阻：能稳定输出，但变化动力不足。',
+                '能量旺盛，但多用于熟悉领域。',
+                '抗压好、执行力强，但未必关注成长过程。',
+                '偏重结果，较少关注体验与自我更新。'
+            ]
+        };
+    }
+
     return {
-      key: 'dolphin',
-      name: '海豚型（成长 + 增效）',
-      img: 'img/animals/dolphin.png',
-      summary: '高开放、低内阻，既敢伸展又能高效行动，是典型的「心流型」配置。',
-      points: [
-        '高开放、低内阻：更愿意尝试新的可能，也比较不怕犯错。',
-        '能不断扩大伸展圈：主动探索、愿意尝试新事物。',
-        '目标清晰，认知能量集中在重要事情上。',
-        '能在过程里找到乐趣，遇到挫折也有恢复力。'
-      ]
+        key: 'tunicate',
+        name: '海鞘型（固化 + 内耗）',
+        img: 'img/animals/tunicate.png',
+        summary: '容易卡住、感觉疲惫，既抗拒改变又容易被情绪消耗。',
+        points: [
+            '低开放、高内阻：习惯待在安全区，不愿迈出变化。',
+            '目标缺乏方向，能量分散或不足。',
+            '容易陷入负面循环，对挫折更敏感。',
+            '内耗导致行动困难，成长动力降低。'
+        ]
     };
-  }
-
-  if (isGrowth && !isEfficient) {
-    return {
-      key: 'sloth',
-      name: '树懒型（成长 + 内耗）',
-      img: 'img/animals/sloth.png',
-      summary: '内心想成长，但行动常常被拖延与情绪内耗拉住。',
-      points: [
-        '高开放、高内阻：想成长，但不容易迈出第一步。',
-        '目标明确，但执行困难，容易犹豫拖延。',
-        '能量涣散，容易被想法与情绪拉走注意力。',
-        '有成长意识，但弹性较弱，压力时容易失衡。'
-      ]
-    };
-  }
-
-  if (!isGrowth && isEfficient) {
-    return {
-      key: 'rhino',
-      name: '犀牛型（固化 + 增效）',
-      img: 'img/animals/rhino.png',
-      summary: '做事高效、能吃苦，但容易停留在舒适圈而缺乏突破。',
-      points: [
-        '低开放、低内阻：能稳定输出，但变化动力不足。',
-        '能量旺盛，但多用于熟悉领域。',
-        '抗压好、执行力强，但未必关注成长过程。',
-        '偏重结果，较少关注体验与自我更新。'
-      ]
-    };
-  }
-
-  return {
-    key: 'tunicate',
-    name: '海鞘型（固化 + 内耗）',
-    img: 'img/animals/tunicate.png',
-    summary: '容易卡住、感觉疲惫，既抗拒改变又容易被情绪消耗。',
-    points: [
-      '低开放、高内阻：习惯待在安全区，不愿迈出变化。',
-      '目标缺乏方向，能量分散或不足。',
-      '容易陷入负面循环，对挫折更敏感。',
-      '内耗导致行动困难，成长动力降低。'
-    ]
-  };
 }
 
 
@@ -298,90 +316,178 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
+        const nameInput = document.getElementById('userName');
+        const displayName = nameInput && nameInput.value.trim()
+            ? nameInput.value.trim()
+            : '（未填写）';
+        const todayStr = new Date().toLocaleDateString('zh-CN');
 
         resultDiv.innerHTML = `
-  <h2>测验结果</h2>
+  <div id="reportCard" class="report-card">
+    <h2>✨ 多维熵值测试报告 ✨</h2>
+    <p>姓名：<strong>${displayName}</strong></p>
+    <p>日期：${todayStr}</p>
+    <hr>
 
-  <section>
-    <h3>整体熵值</h3>
-    <p>总熵值：<strong>${total}</strong> 分，目前处于 <strong>${totalLevel}</strong> 状态。</p>
-    <p class="hint">
-      一般来说，总熵值越高，说明系统（人生 / 心境）的不确定性、波动性越大；
-      越低则代表状态更稳定、有序。但「高 / 低」并不等于「好 / 坏」，需要结合你的成长目标一起看。
-    </p>
-  </section>
+    <section>
+      <h3>整体熵值</h3>
+      <p>总熵值：<strong>${total}</strong> 分，目前处于 <strong>${totalLevel}</strong> 状态。</p>
+      <p class="hint">
+        一般来说，总熵值越高，说明系统（人生 / 心境）的不确定性、波动性越大；
+        越低则代表状态更稳定、有序。但「高 / 低」并不等于「好 / 坏」，需要结合你的成长目标一起看。
+      </p>
+    </section>
 
-  <section>
-    <h3>两条主轴</h3>
-    <p><strong>封闭程度：</strong>${closedTotal} 分</p>
-    <p class="hint">
-      分数越低说明越开放，越高则越封闭。大致来说：≤ 40 分偏向「成长型思维」，> 40 分偏向「固化型思维」。
-      <br>${closedType}
-    </p>
+    <section>
+      <h3>两条主轴</h3>
+      <p><strong>封闭程度：</strong>${closedTotal} 分</p>
+      <p class="hint">
+        分数越低说明越开放，越高则越封闭。大致来说：≤ 40 分偏向「成长型思维」，> 40 分偏向「固化型思维」。
+        <br>${closedType}
+      </p>
 
-    <p><strong>做功阻力：</strong>${resistTotal} 分</p>
-    <p class="hint">
-      分数越低说明做事更高效、能量更容易被用在「真正重要的事情」上；分数越高则说明更容易内耗、拖延。
-      大致来说：≤ 40 分偏向「增效做功」，> 40 分偏向「内耗做工」。
-      <br>${resistType}
-    </p>
-  </section>
+      <p><strong>做功阻力：</strong>${resistTotal} 分</p>
+      <p class="hint">
+        分数越低说明做事更高效、能量更容易被用在「真正重要的事情」上；分数越高则说明更容易内耗、拖延。
+        大致来说：≤ 40 分偏向「增效做功」，> 40 分偏向「内耗做工」。
+        <br>${resistType}
+      </p>
+    </section>
 
-     <section class="animal-section">
-    <h3>你的类型：${animal.name}</h3>
-
-    <div class="animal-box">
-      <img src="${animal.img}" alt="${animal.name}" class="animal-img">
-      <div class="animal-text">
-        <p>${animal.summary}</p>
-        <ul>
-          ${animal.points.map(p => `<li>${p}</li>`).join('')}
-        </ul>
+    <section class="animal-section">
+      <h3>你的类型：${animal.name}</h3>
+      <div class="animal-box">
+        <img src="${animal.img}" alt="${animal.name}" class="animal-img">
+        <div class="animal-text">
+          <p>${animal.summary}</p>
+          <ul>
+            ${animal.points.map(p => `<li>${p}</li>`).join('')}
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <hr>
+    <section class="radar-section">
+      <h3>五个子维度（1～5 分）</h3>
+      <div class="radar-wrapper">
+        <canvas id="entropyRadar"></canvas>
+      </div>
+      <p><strong>封闭性：</strong>${fmt(closedSub)} 分<br>
+        <span class="hint">相关构念：目标感、自我效能感、学习信念、积极认知。</span>
+      </p>
+      <p><strong>平衡态：</strong>${fmt(balanceSub)} 分<br>
+        <span class="hint">相关构念：回避挑战、拒绝改变。</span>
+      </p>
+      <p><strong>高线性：</strong>${fmt(highLinearSub)} 分<br>
+        <span class="hint">相关构念：坚毅特质、过程导向。</span>
+      </p>
+      <p><strong>内心失序：</strong>${fmt(innerChaosSub)} 分<br>
+        <span class="hint">相关构念：情绪敏感、控制想法、抑制欲望、反脆弱。</span>
+      </p>
+      <p><strong>能量失焦：</strong>${fmt(energyBlurSub)} 分<br>
+        <span class="hint">相关构念：专注力、设定目标、抗压力、逆商。</span>
+      </p>
+    </section>
 
-  <section>
-    <h3>五个子维度（1～5 分）</h3>
-    <p><strong>封闭性：</strong>${fmt(closedSub)} 分<br>
-      <span class="hint">相关构念：目标感、自我效能感、学习信念、积极认知。</span>
+    <p class="report-note" style="font-size: 0.9em; color: #666; margin-top: 1em;">
+      * 本测试改编自相关书籍中的自测量表，仅供个人反思与交流使用，不作为任何临床诊断或专业评估依据。
     </p>
-    <p><strong>平衡态：</strong>${fmt(balanceSub)} 分<br>
-      <span class="hint">相关构念：回避挑战、拒绝改变。</span>
-    </p>
-    <p><strong>高线性：</strong>${fmt(highLinearSub)} 分<br>
-      <span class="hint">相关构念：坚毅特质、过程导向。</span>
-    </p>
-    <p><strong>内心失序：</strong>${fmt(innerChaosSub)} 分<br>
-      <span class="hint">相关构念：情绪敏感、控制想法、抑制欲望、反脆弱。</span>
-    </p>
-    <p><strong>能量失焦：</strong>${fmt(energyBlurSub)} 分<br>
-      <span class="hint">相关构念：专注力、设定目标、抗压力、逆商。</span>
-    </p>
-  </section>
 
-  <p style="font-size: 0.9em; color: #666; margin-top: 1em;">
-    * 本测试改编自相关书籍中的自测量表，仅供个人反思与交流使用，不作为任何临床诊断或专业评估依据。
-  </p>
+    <p class="credit">
+      题目与部分解释参考自：
+      <a href="https://weread.qq.com/web/bookDetail/65932700813ab7a60g010c78" target="_blank">
+        《从内耗到心流：复杂时代下的熵减行动指南》
+      </a>，
+      作者：杨鸣。仅供个人学习交流使用，如有侵权请联系我撤下。
+    </p>
+  </div>
+
+  <div class="share-actions">
+    <button type="button" id="copyImgBtn">复制图片</button>
+    <button type="button" id="downloadImgBtn">下载图片</button>
+    <span id="shareStatus" class="share-status"></span>
+  </div>
 `;
 
-        resultDiv.innerHTML += `
-  <p class="credit">
-    题目与部分解释参考自：
-    <a href="https://weread.qq.com/web/bookDetail/65932700813ab7a60g010c78" target="_blank">
-      《从内耗到心流：复杂时代下的熵减行动指南》
-    </a>，
-    作者：杨鸣。仅供个人学习交流使用，如有侵权请联系我撤下。
-  </p>
-`;
-
-
-        // 以后要画雷达图的话，在这里调用 drawRadar(...)
+        // 画雷达图（注意现在的 canvas 在 reportCard 里）
         drawRadar(closedSub, balanceSub, highLinearSub, innerChaosSub, energyBlurSub);
+
+        // 绑定分享按钮事件
+        const copyBtn = document.getElementById('copyImgBtn');
+        const dlBtn = document.getElementById('downloadImgBtn');
+
+        if (copyBtn) copyBtn.addEventListener('click', copyReportImage);
+        if (dlBtn) dlBtn.addEventListener('click', downloadReportImage);
+
+
+
     });
 });
+
+async function generateReportImage() {
+    const card = document.getElementById('reportCard');
+    if (!card) return null;
+
+    // scale=2 让图片更清晰一点
+    const canvas = await html2canvas(card, { scale: 2 });
+    return new Promise(resolve => {
+        canvas.toBlob(blob => resolve(blob), 'image/png');
+    });
+}
+
+async function copyReportImage() {
+    const status = document.getElementById('shareStatus');
+    status.textContent = '正在生成图片...';
+
+    try {
+        const blob = await generateReportImage();
+        if (!blob) {
+            status.textContent = '生成图片失败';
+            return;
+        }
+
+        if (navigator.clipboard && window.ClipboardItem) {
+            const item = new ClipboardItem({ 'image/png': blob });
+            await navigator.clipboard.write([item]);
+            status.textContent = '已复制图片到剪贴板 ✅';
+        } else {
+            status.textContent = '浏览器不支持直接复制图片，请使用下载功能';
+        }
+    } catch (err) {
+        console.error(err);
+        status.textContent = '复制失败，请重试';
+    }
+}
+
+async function downloadReportImage() {
+    const status = document.getElementById('shareStatus');
+    status.textContent = '正在生成图片...';
+
+    try {
+        const blob = await generateReportImage();
+        if (!blob) {
+            status.textContent = '生成图片失败';
+            return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const todayStr = new Date().toISOString().slice(0, 10);
+
+        a.href = url;
+        a.download = `entropy-report-${todayStr}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        status.textContent = '已开始下载图片 📥';
+    } catch (err) {
+        console.error(err);
+        status.textContent = '下载失败，请重试';
+    }
+}
+
 
 /*====== 以后要用到的多语言 / 雷达图函数，可以先留下注释 ======
 
