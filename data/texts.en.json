@@ -1,0 +1,239 @@
+{
+    "options": [
+        "Strongly disagree",
+        "Disagree",
+        "Neutral",
+        "Agree",
+        "Strongly agree"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "text": "I feel that I am making progress toward my goals every day."
+        },
+        {
+            "id": 2,
+            "text": "When trouble comes, I can usually think of ways to handle it."
+        },
+        {
+            "id": 3,
+            "text": "Some skills (such as running, public speaking, writing) won’t improve much no matter how hard I try."
+        },
+        {
+            "id": 4,
+            "text": "I believe adversity can sometimes help personal growth."
+        },
+        {
+            "id": 5,
+            "text": "When there is a difficult task, I prefer not to be the one who has to do it."
+        },
+        {
+            "id": 6,
+            "text": "I dislike things that are new or frequently changing."
+        },
+        {
+            "id": 7,
+            "text": "Once I start something, I tend to stick with it until it's finished."
+        },
+        {
+            "id": 8,
+            "text": "Compared to results, I believe the process of doing something contributes more to growth."
+        },
+        {
+            "id": 9,
+            "text": "When I receive bad news, my emotions tend to react more intensely than other people."
+        },
+        {
+            "id": 10,
+            "text": "I often try to get rid of unnecessary thoughts in my mind."
+        },
+        {
+            "id": 11,
+            "text": "I frequently need to restrain myself from wanting constant relaxation or entertainment."
+        },
+        {
+            "id": 12,
+            "text": "Failure discourages me for a long time."
+        },
+        {
+            "id": 13,
+            "text": "While working or studying, unrelated thoughts often pop into my mind."
+        },
+        {
+            "id": 14,
+            "text": "I often find enjoyment in the things I do."
+        },
+        {
+            "id": 15,
+            "text": "When I am forced to work under pressure, I feel irritated and very unwilling."
+        },
+        {
+            "id": 16,
+            "text": "When I encounter a difficult problem with no guaranteed solution, I feel excited and happy."
+        },
+        {
+            "id": 17,
+            "text": "I know clearly what I am working toward right now."
+        },
+        {
+            "id": 18,
+            "text": "I believe I can effectively handle sudden events in life."
+        },
+        {
+            "id": 19,
+            "text": "No matter how well or badly I perform, I never doubt my ability to learn."
+        },
+        {
+            "id": 20,
+            "text": "After setbacks, I generally become more mature and experienced."
+        },
+        {
+            "id": 21,
+            "text": "I dislike doing things when I am unsure whether I can complete them successfully."
+        },
+        {
+            "id": 22,
+            "text": "I am uncomfortable doing things in unfamiliar environments."
+        },
+        {
+            "id": 23,
+            "text": "I enjoy tasks that require me to give my full effort to complete."
+        },
+        {
+            "id": 24,
+            "text": "Regardless of the outcome, I believe the effort I put into the process is worthwhile."
+        },
+        {
+            "id": 25,
+            "text": "I can notice my emotional fluctuations as soon as they appear."
+        },
+        {
+            "id": 26,
+            "text": "I often try not to think about or discuss things that bother me."
+        },
+        {
+            "id": 27,
+            "text": "I frequently have to resist the temptation of delicious food."
+        },
+        {
+            "id": 28,
+            "text": "It usually takes a long time for me to forget unpleasant experiences."
+        },
+        {
+            "id": 29,
+            "text": "While working or studying, I can clearly hear background sounds like conversations or people pouring water."
+        },
+        {
+            "id": 30,
+            "text": "As long as something feels rewarding, I’m willing to do it even without payment."
+        },
+        {
+            "id": 31,
+            "text": "When facing pressure, I reflect on what I did to deserve it."
+        },
+        {
+            "id": 32,
+            "text": "The more difficult something is, the more focused I become when facing it."
+        }
+    ],
+    "ui": {
+        "title": "Multi-Dimensional Entropy Self-Test",
+        "subtitle": "Please choose the option that best matches your situation for each question.",
+        "nicknameLabel": "Name (optional):",
+        "nicknamePlaceholder": "e.g., Sky",
+        "prev": "Previous",
+        "next": "Next",
+        "calc": "Calculate Result",
+        "pageIndicator": "Page {cur} of {total}",
+        "shareGenerating": "Generating image...",
+        "shareCopyOk": "Image copied to clipboard ✅",
+        "shareCopyUnsupported": "Your browser does not support copying images. Please use Download instead.",
+        "shareCopyFail": "Copy failed. Please try again.",
+        "shareDownloadOk": "Image download started 📥",
+        "shareDownloadFail": "Download failed. Please try again."
+    },
+    "report": {
+        "title": "✨ Multi-Dimensional Entropy Test Report ✨",
+        "labelName": "Name",
+        "labelDate": "Date",
+        "unitScore": "pts",
+        "overallTitle": "Overall Entropy",
+        "overallText1": "Total entropy: ",
+        "overallText2": "currently at the level of",
+        "overallHint": "In general, higher entropy indicates greater uncertainty and fluctuation in your system (life / mental state). Lower entropy reflects a more stable and orderly state. However, “high / low” is not equal to “good / bad” — it depends on your growth goals.",
+        "axesTitle": "Two Main Axes",
+        "closedLabel": "Closedness",
+        "closedExplainGrowth": "Your overall mindset leans toward a *growth mindset*: lower scores indicate openness and a stronger belief that you can change through effort.",
+        "closedExplainFixed": "Your overall mindset leans slightly toward a *fixed mindset*: higher scores indicate stronger attachment to existing views and being less willing to try new approaches.",
+        "resistLabel": "Resistance to Action",
+        "resistExplainEfficient": "You tend to show *efficient action*: lower scores indicate smoother execution and that your energy is more likely to be used on things that truly matter.",
+        "resistExplainInefficient": "You tend to show *inefficient action* (internal resistance): higher scores indicate hesitation, second-guessing, emotional drain, and reduced efficiency.",
+        "animalTitle": "Your Type",
+        "dimTitle": "Five Sub-Dimensions (1–5)",
+        "dimClosed": "Closedness",
+        "dimBalance": "Balance",
+        "dimHighLinear": "High Linearity",
+        "dimInnerChaos": "Inner Chaos",
+        "dimEnergyBlur": "Energy Blur",
+        "dimClosedHint": "Related constructs: sense of purpose, self-efficacy, learning beliefs, positive cognition.",
+        "dimBalanceHint": "Related constructs: challenge avoidance, resistance to change.",
+        "dimHighLinearHint": "Related constructs: grit, process orientation.",
+        "dimInnerChaosHint": "Related constructs: emotional sensitivity, thought control, impulse inhibition, antifragility.",
+        "dimEnergyBlurHint": "Related constructs: focus, goal-setting, stress tolerance, adversity quotient.",
+        "note": "* This test is adapted from related self-assessment tools and is intended only for personal reflection and communication. It is not a clinical or professional psychological evaluation.",
+        "credit": "Some descriptions and structure reference the book *“From Inner Consumption to Flow: An Entropy-Reduction Guide in the Age of Complexity”* by Yang Ming. This content is provided for personal learning only. Please contact me for removal if necessary.",
+        "animals": {
+            "dolphin": {
+                "name": "Dolphin Type (Growth + Efficient)",
+                "summary": "Open-minded and low resistance — willing to try, able to act, and capable of entering flow states.",
+                "points": [
+                    "High openness, low inner resistance: more willing to explore, less afraid of mistakes.",
+                    "Able to expand the comfort zone through continuous stretching.",
+                    "Clear goals and focused mental energy.",
+                    "Enjoys the process and recovers quickly from setbacks."
+                ]
+            },
+            "sloth": {
+                "name": "Sloth Type (Growth + Draining)",
+                "summary": "You want to grow, but inner resistance and emotional drag slow down your actual actions.",
+                "points": [
+                    "High openness but high resistance: willing to improve but struggles to start.",
+                    "Clear goals, yet execution is difficult and often delayed.",
+                    "Easily distracted by emotions or thoughts.",
+                    "Growth-oriented yet low resilience under pressure."
+                ]
+            },
+            "rhino": {
+                "name": "Rhino Type (Fixed + Efficient)",
+                "summary": "Hard-working and effective, but tends to stay within the familiar comfort zone.",
+                "points": [
+                    "Low openness, low resistance: strong output but limited motivation for change.",
+                    "High energy but mostly applied to familiar tasks.",
+                    "Good stress tolerance and execution ability.",
+                    "Focuses more on outcomes than on personal growth."
+                ]
+            },
+            "tunicate": {
+                "name": "Tunicate Type (Fixed + Draining)",
+                "summary": "Easily stuck, tired, resistant to change, and prone to emotional depletion.",
+                "points": [
+                    "Low openness and high resistance: prefers safety and avoids stepping into the unknown.",
+                    "Lacks direction, with energy scattered or insufficient.",
+                    "Easily caught in negative cycles and more sensitive to setbacks.",
+                    "Internal resistance makes action difficult, lowering growth momentum."
+                ]
+            }
+        }
+    },
+    "entropyLevel": {
+        "low": "low entropy",
+        "medium": "medium entropy",
+        "high": "high entropy"
+    },
+    "explain": {
+        "closedGrowth": "Your mindset leans toward a growth mindset: lower scores indicate openness and belief in self-improvement.",
+        "closedFixed": "Your mindset leans toward a fixed mindset: higher scores indicate adherence to existing views and resistance to change.",
+        "resistEfficient": "You tend toward efficient action: lower scores indicate smoother execution and better use of energy.",
+        "resistInefficient": "You tend toward inefficient action: higher scores indicate hesitation, emotional drag, and reduced effectiveness."
+    }
+}
