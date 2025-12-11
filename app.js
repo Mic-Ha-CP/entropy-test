@@ -268,6 +268,11 @@ function renderReport(lang, ctx) {
         animal
     } = ctx;
 
+    const bookLink = `<a href="${t.bookUrl}" target="_blank">${t.bookTitle}</a>`;
+    const creditHtml = t.credit
+        .replace('{bookLink}', bookLink)
+        .replace('{author}', t.bookAuthor);
+
     resultDiv.innerHTML = `
     <div id="reportCard" class="report-card">
 
@@ -322,8 +327,7 @@ function renderReport(lang, ctx) {
           <span class="hint">${t.dimEnergyBlurHint}</span></p>
       </section>
 
-      <p class="note">${t.note}</p>
-      <p class="credit">${t.credit}</p>
+        <p class="credit">${creditHtml}</p>
     </div>
 
     <div class="share-actions">
@@ -349,7 +353,7 @@ function drawRadar(closed, balance, highLinear, innerChaos, energyBlur) {
     const r = langData && langData.report ? langData.report : {};
 
     const labels = [
-        r.dimClosed   || "封闭性",
+        r.dimClosed || "封闭性",
         r.dimHighLinear || "高线性",
         r.dimEnergyBlur || "能量失焦",
         r.dimInnerChaos || "内心失序",
@@ -394,7 +398,7 @@ function drawRadar(closed, balance, highLinear, innerChaos, energyBlur) {
 }
 
 function getAnimalType(closedTotal, resistTotal) {
-    const isGrowth    = closedTotal <= 40;
+    const isGrowth = closedTotal <= 40;
     const isEfficient = resistTotal <= 40;
 
     // 1. 判定 key

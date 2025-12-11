@@ -180,8 +180,10 @@
         "dimHighLinearHint": "Related constructs: grit, process orientation.",
         "dimInnerChaosHint": "Related constructs: emotional sensitivity, thought control, impulse inhibition, antifragility.",
         "dimEnergyBlurHint": "Related constructs: focus, goal-setting, stress tolerance, adversity quotient.",
-        "note": "* This test is adapted from related self-assessment tools and is intended only for personal reflection and communication. It is not a clinical or professional psychological evaluation.",
-        "credit": "Some descriptions and structure reference the book *“From Inner Consumption to Flow: An Entropy-Reduction Guide in the Age of Complexity”* by Yang Ming. This content is provided for personal learning only. Please contact me for removal if necessary.",
+        "bookTitle": "《从内耗到心流：复杂时代下的熵减行动指南》",
+        "bookUrl": "https://weread.qq.com/web/bookDetail/65932700813ab7a60g010c78",
+        "bookAuthor": "杨鸣",
+        "credit": "Questions and explanations are adapted from {bookLink} by {author}. This tool is provided solely for personal learning and reflection. Please contact me if you would like this content removed.",
         "animals": {
             "dolphin": {
                 "name": "Dolphin Type (Growth + Efficient)",
