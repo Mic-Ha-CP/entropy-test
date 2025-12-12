@@ -49,6 +49,22 @@ function applyUiTexts(langData) {
     }
 
     // 分页按钮文字在 showPage 里顺便处理
+
+    // ⬇️ 这里加：填 usage <details>
+    if (langData.usage) {
+        const u = langData.usage;
+        const summaryEl = document.getElementById('usageSummary');
+        const p1 = document.getElementById('usageP1');
+        const p2 = document.getElementById('usageP2');
+        const p3 = document.getElementById('usageP3');
+        const p4 = document.getElementById('usageP4');
+
+        if (summaryEl && u.summary) summaryEl.textContent = u.summary;
+        if (p1 && u.p1) p1.textContent = u.p1;
+        if (p2 && u.p2) p2.textContent = u.p2;
+        if (p3 && u.p3) p3.textContent = u.p3;
+        if (p4 && u.p4) p4.textContent = u.p4;
+    }
 }
 
 // 切换语言
@@ -284,7 +300,11 @@ function renderReport(lang, ctx) {
       <section>
         <h3>${t.overallTitle}</h3>
         <p>${t.overallText1}<strong>${total} ${t.unitScore}</strong>，${t.overallText2} <strong>${totalLevel}</strong>。</p>
-        <p class="hint">${t.overallHint}</p>
+        
+         <p class="hint">
+            ${t.overallHint}<br>
+            ${t.overallDynamicHint}
+        </p>
       </section>
 
       <section>
@@ -309,6 +329,8 @@ function renderReport(lang, ctx) {
         </div>
       </section>
 
+       <p class="hint label-warning">${t.labelWarning}</p>
+
       <section class="radar-section">
         <h3>${t.dimTitle}</h3>
         <div class="radar-wrapper">
@@ -326,6 +348,11 @@ function renderReport(lang, ctx) {
         <p><strong>${t.dimEnergyBlur}：</strong>${fmt(energyBlurSub)} ${t.unitScore}<br>
           <span class="hint">${t.dimEnergyBlurHint}</span></p>
       </section>
+
+        <p class="hint">${t.dimMetaHint}</p>
+
+       
+
 
         <p class="credit">${creditHtml}</p>
     </div>

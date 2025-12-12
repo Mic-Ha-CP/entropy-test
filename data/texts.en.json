@@ -161,6 +161,8 @@
         "overallText1": "Total entropy: ",
         "overallText2": "currently at the level of",
         "overallHint": "In general, higher entropy indicates greater uncertainty and fluctuation in your system (life / mental state). Lower entropy reflects a more stable and orderly state. However, “high / low” is not equal to “good / bad” — it depends on your growth goals.",
+        "dimMetaHint": "This scale is built on 16 related constructs (sense of purpose, self-efficacy, learning beliefs, positive cognition, challenge avoidance, resistance to change, grit, process orientation, emotional sensitivity, thought control, impulse inhibition, antifragility, focus, self-generated goals, stress tolerance, and adversity quotient). These are summarised into the five sub-dimensions above. Each dimension is scored from 1 to 5 to indicate its current strength. If one sub-dimension is about 25% higher or lower than your personal mean across the five, it can be treated as a relatively pronounced strength or weakness, and may be a good priority for your next round of reflection and practice.",
+        "overallDynamicHint": "All scores and types only reflect your state right now. As your life stage and actions change, these results will also shift. They are better treated as a dashboard for ongoing tracking than as fixed labels about who you are.",
         "axesTitle": "Two Main Axes",
         "closedLabel": "Closedness",
         "closedExplainGrowth": "Your overall mindset leans toward a *growth mindset*: lower scores indicate openness and a stronger belief that you can change through effort.",
@@ -186,46 +188,47 @@
         "credit": "Questions and explanations are adapted from {bookLink} by {author}. This tool is provided solely for personal learning and reflection. Please contact me if you would like this content removed.",
         "animals": {
             "dolphin": {
-                "name": "Dolphin Type (Growth + Efficient)",
-                "summary": "Open-minded and low resistance — willing to try, able to act, and capable of entering flow states.",
+                "name": "Dolphin type (Growth + Efficient)",
+                "summary": "High openness with low internal resistance. You are more willing to step out of your comfort zone while keeping your cognitive energy focused on clear goals – a configuration that combines strong growth with good efficiency.",
                 "points": [
-                    "High openness, low inner resistance: more willing to explore, less afraid of mistakes.",
-                    "Able to expand the comfort zone through continuous stretching.",
-                    "Clear goals and focused mental energy.",
-                    "Enjoys the process and recovers quickly from setbacks."
+                    "High openness, low resistance: you stay curious about new things and are less constrained by fear or self-doubt.",
+                    "Able to keep expanding your stretch zone by actively trying and exploring, accumulating experience and resources along the way.",
+                    "Goals tend to be relatively clear, and it is easier for you to concentrate on important tasks.",
+                    "More likely to gain satisfaction from the process itself, with a certain level of resilience when facing setbacks."
                 ]
             },
             "sloth": {
-                "name": "Sloth Type (Growth + Draining)",
-                "summary": "You want to grow, but inner resistance and emotional drag slow down your actual actions.",
+                "name": "Sloth type (Growth + Draining)",
+                "summary": "Your mindset is open and you can see a wider space for growth, but your actions are often slowed down by sensitive emotions and overthinking.",
                 "points": [
-                    "High openness but high resistance: willing to improve but struggles to start.",
-                    "Clear goals, yet execution is difficult and often delayed.",
-                    "Easily distracted by emotions or thoughts.",
-                    "Growth-oriented yet low resilience under pressure."
+                    "High openness, high resistance: willing to change, but the first step often feels very heavy.",
+                    "Your goals are not completely vague, yet you frequently get stuck in cycles of “thinking more” and hesitation.",
+                    "Cognitive energy is easily scattered by various thoughts and by what others might think, so execution can be unstable.",
+                    "You are more sensitive to details in the process and carry a higher emotional load, which makes it important to learn how to regulate pressure while taking action."
                 ]
             },
             "rhino": {
-                "name": "Rhino Type (Fixed + Efficient)",
-                "summary": "Hard-working and effective, but tends to stay within the familiar comfort zone.",
+                "name": "Rhino type (Fixed + Efficient)",
+                "summary": "You put in effort and execute well, performing steadily in familiar fields, but your motivation to stretch or change direction is relatively limited.",
                 "points": [
-                    "Low openness, low resistance: strong output but limited motivation for change.",
-                    "High energy but mostly applied to familiar tasks.",
-                    "Good stress tolerance and execution ability.",
-                    "Focuses more on outcomes than on personal growth."
+                    "Openness is lower, but you can maintain high-efficiency output on your existing path for a long time.",
+                    "It is easy to gain a sense of safety from “familiar hard work”, so there is less urgency to explore other directions.",
+                    "Resources and abilities are mostly invested in known domains, and you are more cautious about unfamiliar paths.",
+                    "If you can combine this efficiency with a more growth-oriented mindset and try modest experiments, there is often substantial potential for further development."
                 ]
             },
             "tunicate": {
-                "name": "Tunicate Type (Fixed + Draining)",
-                "summary": "Easily stuck, tired, resistant to change, and prone to emotional depletion.",
+                "name": "Tunicate type (Fixed + Draining)",
+                "summary": "More inclined to hold on to the current state while also being easily drained by emotions and self-doubt, so both cognitive and action resources feel tight.",
                 "points": [
-                    "Low openness and high resistance: prefers safety and avoids stepping into the unknown.",
-                    "Lacks direction, with energy scattered or insufficient.",
-                    "Easily caught in negative cycles and more sensitive to setbacks.",
-                    "Internal resistance makes action difficult, lowering growth momentum."
+                    "Openness is relatively low, and you are more likely to retreat to familiar patterns when faced with change or challenge.",
+                    "Internal resistance to action is high, and a lot of energy can be consumed in negative thinking and emotional loops.",
+                    "Long-term sense of direction may feel weak, making it hard to accumulate cognitive energy into concrete actions.",
+                    "Once you start consciously lightening the load and taking small actions, even modest changes can bring noticeable improvements in how you feel."
                 ]
             }
-        }
+        },
+        "labelWarning": "The four animal types are only meant to help illustrate different combinations of the two main axes. They are not intended to label anyone in a fixed way. As situations and topics change, you may present very different entropy types at different times."
     },
     "entropyLevel": {
         "low": "low entropy",
@@ -237,5 +240,12 @@
         "closedFixed": "Your mindset leans toward a fixed mindset: higher scores indicate adherence to existing views and resistance to change.",
         "resistEfficient": "You tend toward efficient action: lower scores indicate smoother execution and better use of energy.",
         "resistInefficient": "You tend toward inefficient action: higher scores indicate hesitation, emotional drag, and reduced effectiveness."
+    },
+    "usage": {
+        "summary": "How should I use this scale?",
+        "p1": "It is recommended to take the test once before you start a new entropy-reduction action, as a baseline record.",
+        "p2": "While you are acting on a goal, you can re-test roughly once a month to see whether your total entropy and the two main axes (closedness / resistance to action) are trending down overall.",
+        "p3": "Rather than testing too frequently in a short period, it is more useful to use the scale to track longer-term trends – whether total entropy is gradually decreasing and inner friction is easing.",
+        "p4": "If, under a certain course of action, your total entropy keeps rising noticeably for several months in a row, it may be a sign that the direction is not suitable and it is worth pausing to review and adjust."
     }
 }
