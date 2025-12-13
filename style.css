@@ -5,6 +5,10 @@
     --card: #ffffff;
     --border: rgba(0, 0, 0, .12);
 
+    --animal-bg: #f3f6ff;
+    /* 淡淡蓝的卡片底 */
+
+
     /* 给 Chart.js 用 */
     --chart-grid: rgba(0, 0, 0, .12);
     --chart-tick: rgba(0, 0, 0, .65);
@@ -31,6 +35,9 @@
         --muted: rgba(232, 238, 246, .62);
         --card: rgba(17, 24, 39, .82);
         --border: rgba(232, 238, 246, .10);
+
+        --animal-bg: #151c2a; /* 暗色下偏蓝但不刺眼 */
+
 
         /* Chart.js（柔和一点） */
         --chart-grid: rgba(232, 238, 246, .12);
@@ -177,7 +184,7 @@ h1 {
 .animal-section {
     margin-top: 2em;
     padding: 1.2em;
-    background: color-mix(in srgb, var(--card) 92%, #4a7bd1 8%);
+    background: var(--animal-bg);
     border-radius: 10px;
     border: 1px solid var(--border);
 }
@@ -218,45 +225,48 @@ h1 {
 }
 
 /* ===== 分享按钮 ===== */
-.share-actions{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 14px;
+.share-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 14px;
 }
 
-.share-actions button{
-  appearance: none;
-  border: 1px solid var(--btn-border);
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 14px;
-  line-height: 1;
-  cursor: pointer;
-  transition: background .15s ease, transform .05s ease, border-color .15s ease;
+.share-actions button {
+    appearance: none;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background .15s ease, transform .05s ease, border-color .15s ease;
 }
 
-.share-actions button:hover{
-  background: var(--btn-hover);
+.share-actions button:hover {
+    background: var(--btn-hover);
 }
 
-.share-actions button:active{
-  background: var(--btn-active);
-  transform: translateY(1px);
+.share-actions button:active {
+    background: var(--btn-active);
+    transform: translateY(1px);
 }
 
 /* 让 Download / Copy 看起来是“次级按钮” */
-#copyImgBtn, #downloadImgBtn{
-  background: var(--btn-ghost-bg);
-  color: var(--btn-ghost-text);
-  border-color: var(--btn-ghost-border);
+#copyImgBtn,
+#downloadImgBtn {
+    background: var(--btn-ghost-bg);
+    color: var(--btn-ghost-text);
+    border-color: var(--btn-ghost-border);
 }
-#copyImgBtn:hover, #downloadImgBtn:hover{
-  background: var(--btn-hover);
+
+#copyImgBtn:hover,
+#downloadImgBtn:hover {
+    background: var(--btn-hover);
 }
 
 
