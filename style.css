@@ -1,31 +1,109 @@
-/* ===== 默认：桌面 ===== */
-/* 桌面：Copy + Download */
-#copyImgBtn { display: inline-block; }
-#downloadImgBtn { display: inline-block; }
-#shareImgBtn { display: none; }
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #666666;
+    --card: #ffffff;
+    --border: rgba(0, 0, 0, .12);
 
-/* ===== 手机 ===== */
-@media (max-width: 768px) {
-  /* 手机：只留 Share */
-  #copyImgBtn { display: none; }
-  #downloadImgBtn { display: none; }
-  #shareImgBtn { display: inline-block; }
+    /* 给 Chart.js 用 */
+    --chart-grid: rgba(0, 0, 0, .12);
+    --chart-tick: rgba(0, 0, 0, .65);
+    --chart-label: rgba(0, 0, 0, .85);
+    --chart-fill: rgba(0, 0, 0, .10);
+    --chart-line: rgba(0, 0, 0, .60);
+
+    --btn-bg: #111111;
+    --btn-text: #ffffff;
+    --btn-border: rgba(0, 0, 0, .12);
+    --btn-hover: rgba(0, 0, 0, .06);
+    --btn-active: rgba(0, 0, 0, .10);
+
+    --btn-ghost-bg: transparent;
+    --btn-ghost-text: var(--text);
+    --btn-ghost-border: rgba(0, 0, 0, .18);
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0b1220;
+        --text: rgba(232, 238, 246, 0.658);
+        --muted: rgba(232, 238, 246, .62);
+        --card: rgba(17, 24, 39, .82);
+        --border: rgba(232, 238, 246, .10);
+
+        /* Chart.js（柔和一点） */
+        --chart-grid: rgba(232, 238, 246, .12);
+        --chart-tick: rgba(232, 238, 246, .55);
+        --chart-label: rgba(232, 238, 246, .68);
+        --chart-fill: rgba(148, 163, 184, .14);
+        --chart-line: rgba(148, 163, 184, .60);
+
+        /* 柔一点的线 */
+
+        --btn-bg: rgba(232, 238, 246, .12);
+        --btn-text: rgba(232, 238, 246, 0.531);
+        --btn-border: rgba(232, 238, 246, .16);
+        --btn-hover: rgba(232, 238, 246, .18);
+        --btn-active: rgba(232, 238, 246, .22);
+
+        --btn-ghost-bg: transparent;
+        --btn-ghost-text: rgba(232, 238, 246, .86);
+        --btn-ghost-border: rgba(232, 238, 246, .20);
+    }
 }
 
 
+/* ===== 分享按钮显示规则 ===== */
+/* 默认桌面：Copy + Download */
+#copyImgBtn {
+    display: inline-block;
+}
+
+#downloadImgBtn {
+    display: inline-block;
+}
+
+#shareImgBtn {
+    display: none;
+}
+
+/* 手机：只留 Share */
+@media (max-width: 768px) {
+    #copyImgBtn {
+        display: none;
+    }
+
+    #downloadImgBtn {
+        display: none;
+    }
+
+    #shareImgBtn {
+        display: inline-block;
+    }
+}
+
+/* ===== 全局 ===== */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", "PingFang SC", "Microsoft YaHei",
         "Noto Sans CJK SC", sans-serif;
-    background: #f5f5f5;
+    background: var(--bg);
+    color: var(--text);
     margin: 0;
 }
 
+.hint {
+    color: var(--muted);
+}
+
+/* ===== 布局 ===== */
 .page-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 16px;
-    background: #fff;
+    background: var(--bg);
+    /* ✅ 不要写死 #fff */
 }
 
 h1 {
@@ -35,12 +113,14 @@ h1 {
 
 .intro {
     text-align: center;
-    color: #555;
+    color: var(--muted);
+    /* ✅ */
     margin-bottom: 16px;
 }
 
+/* ===== 题目 ===== */
 .question {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
     padding: 12px 0;
 }
 
@@ -61,52 +141,45 @@ h1 {
     font-size: 1rem;
 }
 
+/* ===== 结果区域（外框） ===== */
 .result {
     margin-top: 24px;
     padding: 12px;
-    border: 1px solid #ccc;
-    background: #fafafa;
+    border: 1px solid var(--border);
+    background: var(--card);
+    /* ✅ 不要 #fafafa */
 }
-
 
 .result .hint {
     font-size: 0.9em;
-    color: #666;
     line-height: 1.5;
 }
 
+/* ===== Report 卡片 ===== */
+.report-card {
+    max-width: 720px;
+    margin: 1.5em auto;
+    padding: 1.5em;
+    background: var(--card);
+    /* ✅ */
+    border: 1px solid var(--border);
+    /* ✅ */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
 
-footer.credit {
-    margin-top: 4em;
-    padding: 1.5em 0;
+.report-card h2 {
     text-align: center;
-    font-size: 0.85em;
-    color: #888;
-    border-top: 1px solid #eee;
+    margin-top: 0;
 }
 
-.credit {
-    margin-top: 2em;
-    text-align: center;
-    font-size: 0.85em;
-    color: #888;
-    line-height: 1.4;
-}
-
-.credit a {
-    color: #4a7bd1;
-    text-decoration: none;
-}
-
-.credit a:hover {
-    text-decoration: underline;
-}
-
+/* ===== 动物块 ===== */
 .animal-section {
     margin-top: 2em;
     padding: 1.2em;
-    background: #f7f9ff;
+    background: color-mix(in srgb, var(--card) 92%, #4a7bd1 8%);
     border-radius: 10px;
+    border: 1px solid var(--border);
 }
 
 .animal-box {
@@ -137,38 +210,71 @@ footer.credit {
     }
 }
 
-.report-card {
-    max-width: 720px;
-    margin: 1.5em auto;
-    padding: 1.5em;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.report-card h2 {
-    text-align: center;
-    margin-top: 0;
-}
-
+/* ===== 雷达图 ===== */
 .radar-wrapper {
     width: min(320px, 80vw);
     height: min(320px, 80vw);
     margin: 1em auto 0;
 }
 
-.share-actions {
-    margin-top: 1em;
+/* ===== 分享按钮 ===== */
+.share-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.share-actions button{
+  appearance: none;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s ease, transform .05s ease, border-color .15s ease;
+}
+
+.share-actions button:hover{
+  background: var(--btn-hover);
+}
+
+.share-actions button:active{
+  background: var(--btn-active);
+  transform: translateY(1px);
+}
+
+/* 让 Download / Copy 看起来是“次级按钮” */
+#copyImgBtn, #downloadImgBtn{
+  background: var(--btn-ghost-bg);
+  color: var(--btn-ghost-text);
+  border-color: var(--btn-ghost-border);
+}
+#copyImgBtn:hover, #downloadImgBtn:hover{
+  background: var(--btn-hover);
+}
+
+
+/* ===== 声明 / credit ===== */
+.credit {
+    margin-top: 2em;
     text-align: center;
-}
-
-.share-actions button {
-    margin: 0 0.5em;
-}
-
-.share-status {
-    display: inline-block;
-    margin-left: 0.8em;
     font-size: 0.85em;
-    color: #555;
+    color: var(--muted);
+    /* ✅ */
+    line-height: 1.4;
+}
+
+.credit a {
+    color: #4a7bd1;
+    text-decoration: none;
+}
+
+.credit a:hover {
+    text-decoration: underline;
 }

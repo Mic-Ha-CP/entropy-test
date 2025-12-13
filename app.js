@@ -7,6 +7,7 @@
 
 let TEXT = {};           // 存各语言的数据，比如 TEXT.zh, TEXT.en
 let currentLang = 'zh';  // 当前语言
+let lastRadarValues = null;
 
 const QUESTIONS_PER_PAGE = 8;
 let currentPage = 1;
@@ -86,6 +87,15 @@ async function applyLanguage(lang) {
   // 语言切换后保持当前页
   showPage(currentPage);
 }
+
+// 放在 drawRadar 定义之后（或之前也行，只要 drawRadar 已声明）
+const mq = window.matchMedia('(prefers-color-scheme: dark)');
+mq.addEventListener?.('change', () => {
+  if (lastRadarValues) {
+    const { closedSub, balanceSub, highLinearSub, innerChaosSub, energyBlurSub } = lastRadarValues;
+    drawRadar(closedSub, balanceSub, highLinearSub, innerChaosSub, energyBlurSub);
+  }
+});
 
 // ========= 量表配置 =========
 
@@ -241,6 +251,11 @@ function getShareText(key) {
   return fallback[key] || '';
 }
 
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+
 // 分页功能
 function showPage(n, totalPagesOverride) {
   const qs = document.querySelectorAll('.question');
@@ -385,7 +400,11 @@ function drawRadar(closed, balance, highLinear, innerChaos, energyBlur) {
   const canvas = document.getElementById('entropyRadar');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const gridColor = cssVar('--chart-grid');
+  const tickColor = cssVar('--chart-tick');
+  const labelColor = cssVar('--chart-label');
+  const fillColor = cssVar('--chart-fill');
+  const lineColor = cssVar('--chart-line');
 
   // 从当前语言的文本里拿维度名 & 数据集标题
   const langData = TEXT[currentLang];
@@ -405,31 +424,35 @@ function drawRadar(closed, balance, highLinear, innerChaos, energyBlur) {
     radarChart.destroy();
   }
 
-  radarChart = new Chart(ctx, {
+  radarChart = new Chart(canvas.getContext('2d'), {
     type: 'radar',
     data: {
       labels,
       datasets: [{
-        label: datasetLabel,
-        data: [closed, highLinear, energyBlur, innerChaos, balance]
+        data: [closed, highLinear, energyBlur, innerChaos, balance],
+        backgroundColor: fillColor,
+        borderColor: lineColor,
+        pointBackgroundColor: lineColor,
+        pointBorderColor: lineColor
       }]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
+      plugins: { legend: { display: false } },
       scales: {
         r: {
           min: 0,
           max: 5,
           ticks: {
-            stepSize: 1
+            stepSize: 1,
+            color: tickColor,
+            backdropColor: 'transparent', // ✅ 去掉灰底
+            showLabelBackdrop: false      // ✅ 不画背板
           },
-          grid: {
-            circular: true
-          }
+          grid: { color: gridColor },
+          angleLines: { color: gridColor },
+          pointLabels: { color: labelColor, font: { size: 14 } }
         }
       }
     }
@@ -708,6 +731,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       energyBlurSub,
       animal
     });
+
+    lastRadarValues = { closedSub, balanceSub, highLinearSub, innerChaosSub, energyBlurSub };
 
     // ⬇️ 报告的 HTML 已经包含 <canvas id="entropyRadar"> 了
     drawRadar(closedSub, balanceSub, highLinearSub, innerChaosSub, energyBlurSub);
