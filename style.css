@@ -29,36 +29,35 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #0b1220;
-        --text: rgba(232, 238, 246, 0.658);
-        --muted: rgba(232, 238, 246, .62);
-        --card: rgba(17, 24, 39, .82);
-        --border: rgba(232, 238, 246, .10);
+  :root {
+    --bg: #0b1220;
+    --card: #111827;               /* 用不透明，截图更干净 */
+    --text: rgba(232,238,246,.92); /* 主文字更清晰 */
+    --muted: rgba(232,238,246,.62);
+    --border: rgba(232,238,246,.12);
 
-        --animal-bg: #151c2a; /* 暗色下偏蓝但不刺眼 */
+    --animal-bg: rgba(74,123,209,.12); /* 淡蓝提示区，不刺眼 */
 
+    /* Chart.js（更柔但清晰） */
+    --chart-grid: rgba(232,238,246,.14);
+    --chart-tick: rgba(232,238,246,.60);
+    --chart-label: rgba(232,238,246,.78);
+    --chart-fill: rgba(74,123,209,.18); /* 蓝一点更高级 */
+    --chart-line: rgba(74,123,209,.70);
 
-        /* Chart.js（柔和一点） */
-        --chart-grid: rgba(232, 238, 246, .12);
-        --chart-tick: rgba(232, 238, 246, .55);
-        --chart-label: rgba(232, 238, 246, .68);
-        --chart-fill: rgba(148, 163, 184, .14);
-        --chart-line: rgba(148, 163, 184, .60);
+    /* Buttons */
+    --btn-bg: rgba(232,238,246,.10);
+    --btn-text: rgba(232,238,246,.92);
+    --btn-border: rgba(232,238,246,.16);
+    --btn-hover: rgba(232,238,246,.14);
+    --btn-active: rgba(232,238,246,.18);
 
-        /* 柔一点的线 */
-
-        --btn-bg: rgba(232, 238, 246, .12);
-        --btn-text: rgba(232, 238, 246, 0.531);
-        --btn-border: rgba(232, 238, 246, .16);
-        --btn-hover: rgba(232, 238, 246, .18);
-        --btn-active: rgba(232, 238, 246, .22);
-
-        --btn-ghost-bg: transparent;
-        --btn-ghost-text: rgba(232, 238, 246, .86);
-        --btn-ghost-border: rgba(232, 238, 246, .20);
-    }
+    --btn-ghost-bg: transparent;
+    --btn-ghost-text: rgba(232,238,246,.86);
+    --btn-ghost-border: rgba(232,238,246,.18);
+  }
 }
+
 
 
 /* ===== 分享按钮显示规则 ===== */
