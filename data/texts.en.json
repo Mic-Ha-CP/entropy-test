@@ -150,7 +150,11 @@
         "shareCopyUnsupported": "Your browser does not support copying images. Please use Download instead.",
         "shareCopyFail": "Copy failed. Please try again.",
         "shareDownloadOk": "Image download started 📥",
-        "shareDownloadFail": "Download failed. Please try again."
+        "shareDownloadFail": "Download failed. Please try again.",
+        "shareShareOpened": "Share sheet opened ✅",
+        "shareShareFail": "Share failed. Please try again.",
+        "shareTitle": "Entropy Report",
+        "shareText": "My entropy test report"
     },
     "report": {
         "title": "✨ Multi-Dimensional Entropy Test Report ✨",

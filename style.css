@@ -1,3 +1,18 @@
+/* ===== 默认：桌面 ===== */
+/* 桌面：Copy + Download */
+#copyImgBtn { display: inline-block; }
+#downloadImgBtn { display: inline-block; }
+#shareImgBtn { display: none; }
+
+/* ===== 手机 ===== */
+@media (max-width: 768px) {
+  /* 手机：只留 Share */
+  #copyImgBtn { display: none; }
+  #downloadImgBtn { display: none; }
+  #shareImgBtn { display: inline-block; }
+}
+
+
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", "PingFang SC", "Microsoft YaHei",

@@ -1,7 +1,7 @@
 // ===================
 // 环境切换开关
 // ===================
-const DEV_MODE = false;   // 开发中：自动填答开启；部署前改成 false
+//const DEV_MODE = false;   // 开发中：自动填答开启；部署前改成 false
 
 // ========= 多语言配置 & 分页 =========
 
@@ -78,7 +78,8 @@ async function applyLanguage(lang) {
   renderQuestionsUsing(data);
 
   // DEV 自动填入答案
-  if (DEV_MODE && typeof myAnswers !== 'undefined') {
+  //if (DEV_MODE && typeof myAnswers !== 'undefined') {
+  if (isDevMode() && typeof myAnswers !== 'undefined') {
     autoFillCustom(myAnswers);
   }
 
@@ -230,7 +231,12 @@ function getShareText(key) {
       : '浏览器不支持直接复制图片，请使用下载功能',
     shareCopyFail: currentLang === 'en' ? 'Copy failed. Please try again.' : '复制失败，请重试',
     shareDownloadOk: currentLang === 'en' ? 'Image download started 📥' : '已开始下载图片 📥',
-    shareDownloadFail: currentLang === 'en' ? 'Download failed. Please try again.' : '下载失败，请重试'
+    shareDownloadFail: currentLang === 'en' ? 'Download failed. Please try again.' : '下载失败，请重试',
+    shareShareOpened: currentLang === 'en' ? 'Share sheet opened ✅' : '已打开分享面板 ✅',
+    shareShareFail: currentLang === 'en' ? 'Share failed. Please try again.' : '分享失败，请重试',
+    shareTitle: currentLang === 'en' ? 'Entropy Report' : '熵值测试报告',
+    shareText: currentLang === 'en' ? 'My entropy test report' : '我的熵值测试报告'
+
   };
   return fallback[key] || '';
 }
@@ -363,7 +369,7 @@ function renderReport(lang, ctx) {
     </div>
 
     <div class="share-actions">
-      <button type="button" id="shareImgBtn">分享 / 保存</button>
+      <button type="button" id="shareImgBtn">${lang == 'zh' ? '分享 / 保存' : 'Share / Save'}</button>
       <button type="button" id="copyImgBtn">${lang === 'zh' ? '复制图片' : 'Copy Image'}</button>
       <button type="button" id="downloadImgBtn">${lang === 'zh' ? '下载图片' : 'Download Image'}</button>
       <span id="shareStatus" class="share-status"></span>
@@ -543,36 +549,36 @@ async function downloadReportImage() {
 
 async function shareReportImage() {
   const status = document.getElementById('shareStatus');
-  status.textContent = (currentLang === 'zh') ? '正在生成图片...' : 'Generating image...';
+  status.textContent = getShareText('shareGenerating');
 
   try {
     const blob = await generateReportImage();
     if (!blob) {
-      status.textContent = (currentLang === 'zh') ? '生成图片失败' : 'Failed to generate image';
+      status.textContent = getShareText('shareShareFail'); // 新 key
       return;
     }
 
     const file = new File([blob], 'entropy-report.png', { type: 'image/png' });
 
-    // ✅ 移动端：优先用系统分享（可保存到相册/发微信/发AirDrop等）
+    // ✅ 移动端：优先系统分享
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
-        title: 'Entropy Report',
+        title: getShareText('shareTitle') || 'Entropy Report',   // 新 key（可选）
+        text: getShareText('shareText') || ''                  // 新 key（可选）
       });
-      status.textContent = (currentLang === 'zh') ? '已打开分享面板 ✅' : 'Share sheet opened ✅';
+
+      status.textContent = getShareText('shareShareOpened');     // 新 key
       return;
     }
 
-    // 兜底：打不开 share 就走下载
+    // 兜底：不支持 share -> 下载
     await downloadReportImage();
   } catch (e) {
     console.error(e);
-    status.textContent = (currentLang === 'zh') ? '分享失败，请重试' : 'Share failed, please try again';
+    status.textContent = getShareText('shareShareFail');         // 新 key
   }
 }
-
-
 
 // ========= 主逻辑 =========
 // ================ 主逻辑（入口） ================
