@@ -288,6 +288,10 @@ function showPage(n, totalPagesOverride) {
         if (nextBtn && langData.ui.next) nextBtn.textContent = langData.ui.next;
         if (calcBtn && langData.ui.calc) calcBtn.textContent = langData.ui.calc;
     }
+
+    // UI feedback only: reflect page boundaries on pager buttons.
+    if (prevBtn) prevBtn.disabled = (n <= 1);
+    if (nextBtn) nextBtn.disabled = (n >= totalPages);
 }
 
 function nextPage() {
