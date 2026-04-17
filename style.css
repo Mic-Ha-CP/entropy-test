@@ -25,6 +25,14 @@
     --btn-ghost-bg: transparent;
     --btn-ghost-text: var(--text);
     --btn-ghost-border: rgba(0, 0, 0, .18);
+    --focus-ring: rgba(74, 123, 209, .45);
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
 
 }
 
@@ -97,6 +105,8 @@ body {
     background: var(--bg);
     color: var(--text);
     margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .hint {
@@ -107,58 +117,146 @@ body {
 .page-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 16px;
+    padding: var(--space-4);
     background: var(--bg);
     /* ✅ 不要写死 #fff */
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 8px;
+    margin: 0 0 var(--space-2);
+    font-size: clamp(1.6rem, 2.2vw, 2rem);
+    line-height: 1.25;
 }
 
 .intro {
     text-align: center;
     color: var(--muted);
     /* ✅ */
-    margin-bottom: 16px;
+    margin: 0 0 var(--space-5);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+h2 {
+    font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+    line-height: 1.35;
+}
+
+h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.hint,
+.credit {
+    font-size: 0.92rem;
+}
+
+/* ===== 通用按钮系统 ===== */
+button {
+    appearance: none;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .16s ease, transform .06s ease, border-color .16s ease, opacity .16s ease;
+}
+
+button:hover {
+    background: var(--btn-hover);
+}
+
+button:active {
+    background: var(--btn-active);
+    transform: translateY(1px);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: .52;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.lang-switch,
+.pager {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.lang-switch {
+    justify-content: flex-end;
+    margin-bottom: var(--space-4);
+}
+
+.pager {
+    justify-content: center;
+    margin-top: var(--space-4);
+}
+
+#pageIndicator {
+    color: var(--muted);
+    font-size: 0.95rem;
+    min-width: 10.5rem;
+    text-align: center;
 }
 
 /* ===== 题目 ===== */
 .question {
     border-bottom: 1px solid var(--border);
-    padding: 12px 0;
+    padding: var(--space-3) 0;
 }
 
 .q-title {
-    margin-bottom: 8px;
-    font-weight: 500;
+    margin-bottom: var(--space-2);
+    font-weight: 600;
+    line-height: 1.5;
 }
 
 .options label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 6px;
     margin-right: 12px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
+    line-height: 1.5;
 }
 
 #calcBtn {
-    margin-top: 16px;
-    padding: 8px 16px;
-    font-size: 1rem;
+    display: block;
+    margin: var(--space-5) auto 0;
+    min-width: 150px;
 }
 
 /* ===== 结果区域（外框） ===== */
 .result {
-    margin-top: 24px;
-    padding: 12px;
+    margin-top: var(--space-6);
+    padding: var(--space-4);
     border: 1px solid var(--border);
     background: var(--card);
     /* ✅ 不要 #fafafa */
+    border-radius: var(--radius-lg);
 }
 
 .result .hint {
-    font-size: 0.9em;
+    font-size: 0.92rem;
     line-height: 1.5;
+}
+
+.result:empty {
+    display: none;
 }
 
 /* ===== Report 卡片 ===== */
@@ -170,13 +268,16 @@ h1 {
     /* ✅ */
     border: 1px solid var(--border);
     /* ✅ */
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .report-card h2 {
     text-align: center;
     margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: .01em;
 }
 
 /* ===== 动物块 ===== */
@@ -184,7 +285,7 @@ h1 {
     margin-top: 2em;
     padding: 1.2em;
     background: var(--animal-bg);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border);
 }
 
@@ -195,8 +296,8 @@ h1 {
 }
 
 .animal-img {
-    width: 180px;
-    height: 180px;
+    width: clamp(150px, 28vw, 190px);
+    height: clamp(150px, 28vw, 190px);
     object-fit: contain;
 }
 
@@ -234,25 +335,7 @@ h1 {
 }
 
 .share-actions button {
-    appearance: none;
-    border: 1px solid var(--btn-border);
-    background: var(--btn-bg);
-    color: var(--btn-text);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 14px;
-    line-height: 1;
-    cursor: pointer;
-    transition: background .15s ease, transform .05s ease, border-color .15s ease;
-}
-
-.share-actions button:hover {
-    background: var(--btn-hover);
-}
-
-.share-actions button:active {
-    background: var(--btn-active);
-    transform: translateY(1px);
+    min-width: 110px;
 }
 
 /* 让 Download / Copy 看起来是“次级按钮” */
@@ -286,4 +369,46 @@ h1 {
 
 .credit a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    .page-container {
+        padding: 14px;
+    }
+
+    .intro {
+        margin-bottom: var(--space-4);
+    }
+
+    .pager {
+        gap: 6px;
+    }
+
+    #pageIndicator {
+        min-width: 100%;
+        order: -1;
+    }
+
+    button {
+        padding: 9px 12px;
+    }
+
+    .result {
+        margin-top: var(--space-5);
+        padding: var(--space-3);
+    }
+
+    .report-card {
+        margin: 1em auto;
+        padding: 1.1em;
+    }
+
+    .radar-wrapper {
+        width: min(300px, 86vw);
+        height: min(300px, 86vw);
+    }
 }
