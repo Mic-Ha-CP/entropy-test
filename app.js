@@ -1,7 +1,4 @@
-// ===================
-// 环境切换开关
-// ===================
-//const DEV_MODE = false;   // 开发中：自动填答开启；部署前改成 false
+// Dev helper: append ?dev=1 to the URL to auto-fill answers (see myAnswers + applyLanguage).
 
 // ========= 多语言配置 & 分页 =========
 
@@ -49,9 +46,9 @@ function applyUiTexts(langData) {
         nameInputEl.placeholder = ui.nicknamePlaceholder;
     }
 
-    // 分页按钮文字在 showPage 里顺便处理
+    // Pager labels are updated in showPage()
 
-    // ⬇️ 这里加：填 usage <details>
+    // Usage accordion (details/summary + paragraphs)
     if (langData.usage) {
         const u = langData.usage;
         const summaryEl = document.getElementById('usageSummary');
@@ -78,8 +75,7 @@ async function applyLanguage(lang) {
     applyUiTexts(data);
     renderQuestionsUsing(data);
 
-    // DEV 自动填入答案
-    //if (DEV_MODE && typeof myAnswers !== 'undefined') {
+    // Dev only (?dev=1): auto-fill answers from myAnswers
     if (isDevMode() && typeof myAnswers !== 'undefined') {
         autoFillCustom(myAnswers);
     }

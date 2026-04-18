@@ -48,4 +48,4 @@ Then open:
 - `screenshots/mobile-result.png`
 
 ## Live Demo
-GitHub Pages: `https://<your-username>.github.io/entropy-test/`
+GitHub Pages: `https://mic-ha-cp.github.io/entropy-test/`
