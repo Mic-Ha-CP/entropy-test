@@ -49,3 +49,6 @@ Then open:
 
 ## Live Demo
 GitHub Pages: `https://mic-ha-cp.github.io/entropy-test/`
+
+## How to deploy (GitHub Pages)
+Push to the branch GitHub Pages uses (often `main`); after you change `style.css` or `app.js` in a meaningful way, increment the shared `?v=` query on both in `index.html` so returning visitors load fresh assets.
