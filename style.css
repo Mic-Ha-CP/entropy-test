@@ -1,38 +1,39 @@
 /**
  * Entropy Test — global styles.
  * Theme tokens live in :root; Chart.js reads --chart-* from app.js (cssVar).
+ * Colors use rgba/hex only (no color-mix) so html2canvas can parse computed styles.
  */
 
 :root {
     /* Page background & typography */
-    --bg: #222831;
+    --bg: #21252c;
     --text: #DFD0B8;
     --muted: #948979;
 
-    /* Surfaces */
-    --card: #272a34;
-    --border: color-mix(in srgb, var(--text) 14%, transparent);
-    --animal-bg: color-mix(in srgb, #393E46 95%, var(--text) 1%);
+    /* Surfaces (~ former color-mix blends) */
+    --card: #252831;
+    --border: rgba(223, 208, 184, 0.14);
+    --animal-bg: #3b404773;
 
     /* Chart.js radar (consumed in app.js) */
-    --chart-grid: color-mix(in srgb, var(--text) 16%, transparent);
-    --chart-tick: color-mix(in srgb, var(--muted) 70%, var(--text) 30%);
-    --chart-label: color-mix(in srgb, var(--text) 88%, var(--muted) 12%);
-    --chart-fill: color-mix(in srgb, var(--muted) 35%, transparent);
-    --chart-line: color-mix(in srgb, var(--text) 75%, var(--muted) 25%);
+    --chart-grid: rgba(223, 208, 184, 0.16);
+    --chart-tick: rgb(171, 158, 140);
+    --chart-label: rgb(214, 200, 176);
+    --chart-fill: rgba(148, 137, 121, 0.35);
+    --chart-line: rgb(204, 190, 168);
 
     /* Primary & ghost buttons */
     --btn-bg: #393E46;
     --btn-text: var(--text);
-    --btn-border: color-mix(in srgb, var(--text) 18%, transparent);
-    --btn-hover: color-mix(in srgb, #393E46 70%, var(--text) 30%);
-    --btn-active: color-mix(in srgb, #393E46 55%, var(--text) 45%);
+    --btn-border: rgba(223, 208, 184, 0.18);
+    --btn-hover: rgb(107, 106, 104);
+    --btn-active: rgb(132, 128, 121);
 
     --btn-ghost-bg: transparent;
     --btn-ghost-text: var(--text);
-    --btn-ghost-border: color-mix(in srgb, var(--muted) 50%, var(--text) 50%);
+    --btn-ghost-border: rgb(186, 173, 153);
 
-    --focus-ring: color-mix(in srgb, var(--text) 45%, transparent);
+    --focus-ring: rgba(223, 208, 184, 0.45);
 
     --radius-md: 10px;
     --radius-lg: 12px;
@@ -210,8 +211,9 @@ button:disabled {
 }
 
 .options label:hover {
-    background: color-mix(in srgb, var(--btn-hover) 70%, transparent);
-    border-color: color-mix(in srgb, var(--btn-border) 60%, var(--text) 20%);
+    /* ~ color-mix(btn-hover 70%, transparent) / border + text blend */
+    background: rgba(107, 106, 104, 0.7);
+    border-color: rgba(223, 208, 184, 0.42);
 }
 
 .options input[type="radio"] {
